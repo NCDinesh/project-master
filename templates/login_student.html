@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+    }
+    
+    .container {
+      margin-top: 100px;
+    }
+    
+    .form {
+      display: inline-block;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form input[type="text"],
+    .form input[type="password"] {
+      width: 250px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    .form input[type="submit"] {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .form input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login Page</h2>
+    
+    <div class="form">
+
+      <div>
+        <style>
+          h5{
+              color: red;
+          }
+      </style>
+      {% for message in messages %}
+  
+      <h5> {{ message }} </h5>
+      {% endfor %}
+  
+      </div>
+      <h3>Student's Login</h3>
+      <form action="login_student" method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="password" name="password" placeholder="password" required><br>
+        <input type="submit" value="Login">
+     
+      </form>
+      <br>
+      <br>
+      <a href="signin"> Go Back to Portal </a>
+    </div>
+    
+    </div>
+  </div>
+</body>
+</html>

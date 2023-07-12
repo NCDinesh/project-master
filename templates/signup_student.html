@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Account</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+    }
+    
+    .container {
+      margin-top: 100px;
+    }
+    
+    .form {
+      display: inline-block;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form input[type="text"],
+    .form input[type="email"],
+    .form input[type="password"] {
+      width: 250px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    .form input[type="submit"] {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .form input[type="submit"]:hover {
+      background-color: #45a049;
+
+      .message1{
+        color: red;
+      }
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 12px 16px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+
+
+  </head>
+<body>
+  <div class="container"> 
+
+    <div>
+      <style>
+        h5{
+            color: red;
+        }
+    </style>
+    {% for message in messages %}
+
+    <h5> {{ message }} </h5>
+    {% endfor %}
+
+    </div>
+    <h2>Create Account For Student</h2>
+    
+    <div class="form">
+      <form action="signup_student" method="post">
+        {% csrf_token %}
+        <input type="text" name="fullname" placeholder="Full Name" required><br>
+        <input type="text" name="rollNo" placeholder="Roll Number" required><br>
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        
+        <input type="password" name="password1" placeholder="Password" required><br>
+        <input type="password" name="password2" placeholder="Enter Your Password again" required><br>
+          <div class="dropdown">
+    <button onclick="toggleDropdown()" class="dropbtn">Select Subjects</button>
+    <div id="myDropdown" class="dropdown-content">
+      
+      <input type="checkbox"  value="EDC" id="EDC" name="subjects">EDC<br>
+      <input type="checkbox"  value="ECT"  id="ECT" name="subjects">ECT<br>
+      <input type="checkbox"  value="EMX"  id="EMX" name="subjects">EMX<br>
+
+
+    </div>
+        
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <input type="submit" value="Create Account">
+      </form>
+      <br>
+      <a href="signin"> Already Have an account </a>
+    </div>
+  </div>
+  <script>
+    function toggleDropdown() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+  </script>
+
+</body>
+</html>
