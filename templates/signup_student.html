@@ -62,6 +62,49 @@
     .dropdown:hover .dropdown-content {
       display: block;
     }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    /* Style for the dropdown button */
+    .dropbtn {
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 8px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    /* Style for the dropdown content */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    /* Style for the dropdown links */
+    .dropdown-content a {
+      color: #333;
+      padding: 8px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    /* Style when hovering over a dropdown link */
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+    
+    /* Show the dropdown content when hovering over the dropdown container */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
   </style>
 
 
@@ -93,8 +136,23 @@
         
         <input type="password" name="password1" placeholder="Password" required><br>
         <input type="password" name="password2" placeholder="Enter Your Password again" required><br>
-   
-      
+        
+        <div class="dropdown">
+          <button class="dropbtn">Select Year/semester</button>
+          <div class="dropdown-content">
+            <a href="#" value="I/I">I/I</a>
+            <a href="#" value="I/II">I/II</a>
+            <a href="#" value="II/I">II/I</a>
+            <a href="#" value="II/II">II/II</a>
+            <a href="#" value="III/I">III/I</a>
+            <a href="#" value="III/II">III/II</a>
+            <a href="#" value="IV/I">IV/I</a>
+            <a href="#" value="IV/II">IV/II</a>
+          </div>
+        </div>
+        
+        <input type="hidden" id="selectedOption" name="selectedOption" value="">
+{% comment %}       
       <div class="dropdown">
         <button onclick="toggleDropdown()" class="dropbtn">Select Subjects</button>
         <div id="myDropdown" class="dropdown-content">
@@ -102,22 +160,16 @@
 
           {% for n in data%}
           <input type="checkbox"  value="{{n.sub_name}}"  id="{{n.sub_name}}" name="subjects">{{n.sub_name}}<br>
-          {% endfor %}
+          {% endfor %} {% endcomment %}
 
         </div>
 
     </div>
         
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+  
   <input type="submit" value="Create Account">
       </form>
+      <br>
       <br>
       <a href="signin"> Already Have an account </a>
     </div>
@@ -126,6 +178,18 @@
     function toggleDropdown() {
       document.getElementById("myDropdown").classList.toggle("show");
     }
+
+    const dropdownOptions = document.querySelectorAll('.dropdown-content a');
+
+// Add click event listeners to each option
+dropdownOptions.forEach(option => {
+  option.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default link behavior
+    const selectedValue = this.getAttribute('value');
+    document.getElementById('selectedOption').value = selectedValue;
+    document.querySelector('.dropbtn').textContent = this.textContent;
+  });
+});
   </script>
 
 </body>

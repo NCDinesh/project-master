@@ -64,7 +64,15 @@ def signup_student(request):
         email = request.POST["email"]
         password1 = request.POST["password1"]
         password2 = request.POST["password2"]
-        subjects= request.POST.getlist('subjects')
+        classe = request.POST['selectedOption']
+        
+        for n in data:
+            if classe=="I/I":
+                subjects = n.sub_name1
+            elif classe=="I/II":
+                subjects = n.sub_name2
+
+        
 
 
         if password1 == password2:
@@ -86,7 +94,7 @@ def signup_student(request):
             
             else:
                 
-                user_data = Student_user.objects.create(fullname=fullname, rollno=rollno, username=username, email=email, password=password1,subjects=subjects)
+                user_data = Student_user.objects.create(fullname=fullname, rollno=rollno, username=username, email=email, password=password1, subjects=subjects, classe=classe)
                 user_data.save()
 
 
@@ -166,7 +174,7 @@ def logout(request):
 
 @login_required(login_url='signin')
 def index(request):
-    data = Student_user.objects.filter(subjects__icontains='Computer Graphics')
+    data = Student_user.objects.filter(subjects__icontains='Physics1')
 
                 
 
