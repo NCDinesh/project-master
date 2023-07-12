@@ -93,14 +93,18 @@
         
         <input type="password" name="password1" placeholder="Password" required><br>
         <input type="password" name="password2" placeholder="Enter Your Password again" required><br>
-          <div class="dropdown">
-    <button onclick="toggleDropdown()" class="dropbtn">Select Subjects</button>
-    <div id="myDropdown" class="dropdown-content">
+   
       
-      <input type="checkbox"  value="EDC" id="EDC" name="subjects">EDC<br>
-      <input type="checkbox"  value="ECT"  id="ECT" name="subjects">ECT<br>
-      <input type="checkbox"  value="EMX"  id="EMX" name="subjects">EMX<br>
+      <div class="dropdown">
+        <button onclick="toggleDropdown()" class="dropbtn">Select Subjects</button>
+        <div id="myDropdown" class="dropdown-content">
+       
 
+          {% for n in data%}
+          <input type="checkbox"  value="{{n.sub_name}}"  id="{{n.sub_name}}" name="subjects">{{n.sub_name}}<br>
+          {% endfor %}
+
+        </div>
 
     </div>
         

@@ -16,6 +16,6 @@ class Teacher_user(models.Model):
     subject = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
 
-# class subjectname(models.Model):
-#     sub_name = models.CharField(max_length=100)
-#     sub_id=models.IntegerField(default=None)
+class subjectname(models.Model):
+    sub_name = models.CharField(max_length=100)
+    

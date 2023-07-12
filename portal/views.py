@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponse
-from .models import Student_user, Teacher_user
+from .models import Student_user, Teacher_user, subjectname
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -20,7 +20,7 @@ def login_student(request):
             check = Student_user.objects.filter(username=username , password=password).first()
             if check is not None:
                 auth.login(request,user)
-                return HttpResponse("Student is logged in")
+                return redirect('student_index')
             
             else: 
                 messages.info(request,"Either username or password is invalid")
@@ -55,7 +55,8 @@ def login_teacher(request):
     return render(request,"login_teacher.html")
 
 def signup_student(request):
-    ms=['EDC',"ECT", "EMX"]
+    
+    data = subjectname.objects.all()
     if request.method == "POST":
         fullname = request.POST["fullname"]
         rollno = request.POST["rollNo"]
@@ -94,13 +95,13 @@ def signup_student(request):
 
                 user_login = auth.authenticate(username=username,password=password1)
                 auth.login(request,user_login)
-                return HttpResponse("Student is logged in")
+                return redirect('student_index')
 
         else:
             messages.info(request, "Password not matching")
             return redirect("signup_student")
 
-    return render(request,"signup_student.html")
+    return render(request,"signup_student.html",{'data':data})
 
 
 
@@ -165,11 +166,12 @@ def logout(request):
 
 @login_required(login_url='signin')
 def index(request):
-    data = Student_user.objects.filter(subjects__icontains='EMX')
+    data = Student_user.objects.filter(subjects__icontains='Computer Graphics')
 
-    # for n in data:
-    #     for sub in n.subjects:
-    #         if sub=="EDC":
                 
 
     return render(request,"index.html",{'data':data})
+
+@login_required(login_url='signin')
+def student_index(request):
+    return render(request,"student_index.html")

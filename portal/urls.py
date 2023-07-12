@@ -12,4 +12,5 @@ urlpatterns = [
     path('signup_teacher',views.signup_teacher, name="signup_teacher"),
     path('home',views.home, name="home"),
     path("logout/",views.logout ,name="logout"),
+    path("student_index/",views.student_index ,name="student_index"),
 ]
